@@ -8,7 +8,7 @@ For restful webservices, most of requests are stateless, meaning that it is not 
 
 This example shows how we can use in memory users to test Spring Security
 
-WebSecurityConfigurerAdapter
+  WebSecurityConfigurerAdapter
 
 The @EnableWebSecurity annotation and WebSecurityConfigurerAdapter work together to provide web based security. By extending WebSecurityConfigurerAdapter and only a few lines of code we are able to do the following:
 
@@ -16,15 +16,18 @@ Require the user to be authenticated prior to accessing any URL within our appli
 
 AbstractAnnotationConfigDispatcherServletInitializer
 
-The next step is to ensure that the root ApplicationContext includes the HelloWebSecurityConfiguration we just specified. There are many different ways we could do this, but if you are using Spring’s AbstractAnnotationConfigDispatcherServletInitializer it might look something like this: public class SpringWebMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+The next step is to ensure that the root ApplicationContext includes the HelloWebSecurityConfiguration we just specified. There are many different ways we could do this, but if you are using Spring’s AbstractAnnotationConfigDispatcherServletInitializer it might look something like this: 
 
-  @Override
-  protected Class<?>[] getRootConfigClasses() {
-    return new Class[] { HelloWebSecurityConfiguration.class };
-  }
-  ...
-}
-AbstractSecurityWebApplicationInitializer
+    public class SpringWebMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+      @Override
+      protected Class<?>[] getRootConfigClasses() {
+        return new Class[] { HelloWebSecurityConfiguration.class };
+      }
+      ...
+    }
+    
+  AbstractSecurityWebApplicationInitializer
 
 The last step is we need to map the springSecurityFilterChain. We can easily do this by extending AbstractSecurityWebApplicationInitializer and optionally overriding methods to customize the mapping.
 
